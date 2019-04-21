@@ -117,6 +117,8 @@
     <ClInclude Include="..\skse\ScaleformAPI.h" />
     <ClInclude Include="..\skse\ScaleformCallbacks.h" />
     <ClInclude Include="AdditionalFunctions.h" />
+    <ClInclude Include="discord_rpc\include\discord_register.h" />
+    <ClInclude Include="discord_rpc\include\discord_rpc.h" />
     <ClInclude Include="DragonbornPresence.h" />
     <ClInclude Include="tinyfsm\include\tinyfsm.hpp" />
   </ItemGroup>

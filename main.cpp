@@ -5,9 +5,9 @@
 #include "DragonbornPresence.h"
 
 
-const char* log_path = R"(\My Games\Skyrim\SKSE\DragonbornPresence.log)";
+const char * log_path = R"(\My Games\Skyrim\SKSE\DragonbornPresence.log)";
 
-const char* plugin_name = "DragonbornPresence";
+const char * plugin_name = "DragonbornPresence";
 const UInt32 kVersionMajor = 1;
 const UInt32 kVersionMinor = 0;
 const UInt32 kVersionPatch = 0;
@@ -15,15 +15,15 @@ const UInt32 kVersionPatch = 0;
 static PluginHandle g_pluginHandle = kPluginHandle_Invalid;
 
 
-SKSEScaleformInterface* g_scaleform = nullptr;
-SKSESerializationInterface* g_serialization = nullptr;
-SKSEMessagingInterface* g_messageInterface = nullptr;
-SKSEPapyrusInterface* g_papyrus = nullptr;
+SKSEScaleformInterface * g_scaleform = nullptr;
+SKSESerializationInterface * g_serialization = nullptr;
+SKSEMessagingInterface * g_messageInterface = nullptr;
+SKSEPapyrusInterface * g_papyrus = nullptr;
 
 
 extern "C" {
 
-bool SKSEPlugin_Query(const SKSEInterface* skse, PluginInfo* info) {
+bool SKSEPlugin_Query(const SKSEInterface * skse, PluginInfo * info) {
   // Called by SKSE to learn about this plugin and check that it's safe to load it
   IDebugLog::OpenRelative(CSIDL_MYDOCUMENTS, log_path);
   IDebugLog::SetPrintLevel(IDebugLog::kLevel_Error);
@@ -48,8 +48,7 @@ bool SKSEPlugin_Query(const SKSEInterface* skse, PluginInfo* info) {
     _MESSAGE("loaded in editor, marking as incompatible");
 
     return false;
-  }
-  else if (skse->runtimeVersion != RUNTIME_VERSION_1_9_32_0) {
+  } else if (skse->runtimeVersion != RUNTIME_VERSION_1_9_32_0) {
     _MESSAGE("unsupported runtime version %08X", skse->runtimeVersion);
 
     return false;
@@ -78,9 +77,11 @@ bool SKSEPlugin_Query(const SKSEInterface* skse, PluginInfo* info) {
   return true;
 }
 
-bool SKSEPlugin_Load(const SKSEInterface* skse) {
+bool SKSEPlugin_Load(const SKSEInterface * skse) {
   // Called by SKSE to load this plugin
   _MESSAGE("DragonbornPresence loaded");
+
+  dragonborn_presence_namespace::SetLocale();
 
   g_papyrus = static_cast<SKSEPapyrusInterface *>(skse->QueryInterface(
     kInterface_Papyrus));
@@ -89,9 +90,7 @@ bool SKSEPlugin_Load(const SKSEInterface* skse) {
   const auto reg_check = g_papyrus->Register(
     dragonborn_presence_namespace::RegisterFuncs);
 
-  if (reg_check) {
-    _MESSAGE("Papyrus Register Succeeded");
-  }
+  if (reg_check) { _MESSAGE("Papyrus Register Succeeded"); }
 
   dragonborn_presence_namespace::RegisterGameEventHandlers();
 

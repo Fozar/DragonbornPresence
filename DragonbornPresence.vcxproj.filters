@@ -10,6 +10,9 @@
     <Filter Include="skse\scaleform">
       <UniqueIdentifier>{b78d2ad3-e0df-4b8e-a766-5a33762997e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="discord">
+      <UniqueIdentifier>{0de5bd58-0bc0-4794-8aac-706fc9850f7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\skse\GameAPI.cpp">
@@ -38,6 +41,12 @@
     <ClInclude Include="DragonbornPresence.h" />
     <ClInclude Include="AdditionalFunctions.h" />
     <ClInclude Include="tinyfsm\include\tinyfsm.hpp" />
+    <ClInclude Include="discord_rpc\include\discord_register.h">
+      <Filter>discord</Filter>
+    </ClInclude>
+    <ClInclude Include="discord_rpc\include\discord_rpc.h">
+      <Filter>discord</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="exports.def" />
