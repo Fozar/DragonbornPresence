@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="skse">
+      <UniqueIdentifier>{d4cc7359-a051-46f7-a282-ffd2e9b3ee98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="skse\api">
+      <UniqueIdentifier>{aad9d29f-bf14-42ce-983f-9366a13073b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="skse\scaleform">
+      <UniqueIdentifier>{b78d2ad3-e0df-4b8e-a766-5a33762997e1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\skse\GameAPI.cpp">
+      <Filter>skse\api</Filter>
+    </ClCompile>
+    <ClCompile Include="..\skse\ScaleformAPI.cpp">
+      <Filter>skse\scaleform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\skse\ScaleformCallbacks.cpp">
+      <Filter>skse\scaleform</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="DragonbornPresence.cpp" />
+    <ClCompile Include="AdditionalFunctions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\skse\GameAPI.h">
+      <Filter>skse\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\skse\ScaleformAPI.h">
+      <Filter>skse\scaleform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\skse\ScaleformCallbacks.h">
+      <Filter>skse\scaleform</Filter>
+    </ClInclude>
+    <ClInclude Include="DragonbornPresence.h" />
+    <ClInclude Include="AdditionalFunctions.h" />
+    <ClInclude Include="tinyfsm\include\tinyfsm.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="exports.def" />
+    <None Include="common\plugin.def" />
+  </ItemGroup>
+</Project>
