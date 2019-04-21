@@ -11,7 +11,7 @@ bool is_user_connected = true;
 
 int64_t start_time;
 
-const char * application_id = "";
+const char * application_id = "565627104608256015";
 const char * steam_appid = "72850";
 
 const char * current_player_info;
