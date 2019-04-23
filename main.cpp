@@ -48,27 +48,13 @@ bool SKSEPlugin_Query(const SKSEInterface * skse, PluginInfo * info) {
     _MESSAGE("loaded in editor, marking as incompatible");
 
     return false;
-  } else if (skse->runtimeVersion != RUNTIME_VERSION_1_9_32_0) {
+  }
+  if (skse->runtimeVersion != RUNTIME_VERSION_1_9_32_0) {
     _MESSAGE("unsupported runtime version %08X", skse->runtimeVersion);
 
     return false;
   }
 
-  // get the serialization interface and query its version
-  g_serialization = static_cast<SKSESerializationInterface *>(skse->
-    QueryInterface(kInterface_Serialization));
-  if (!g_serialization) {
-    _ERROR("couldn't get serialization interface");
-
-    return false;
-  }
-
-  if (g_serialization->version < SKSESerializationInterface::kVersion) {
-    _ERROR("serialization interface too old (%d expected %d)",
-           g_serialization->version, SKSESerializationInterface::kVersion);
-
-    return false;
-  }
 
   // ### do not do anything else in this callback
   // ### only fill out PluginInfo and return true/false

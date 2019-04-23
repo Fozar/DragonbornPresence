@@ -19,9 +19,5 @@ EndFunction
 Event OnPlayerLoadGame()
     Utility.Wait(0.1)
     UpdatePosition()
-EndEvent
-
-Event OnInit()
-  Utility.Wait(0.1)
-  UpdatePosition()
+    SetGameLoaded()
 EndEvent

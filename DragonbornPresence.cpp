@@ -1,9 +1,8 @@
-#include "skse/GameEvents.h" //dispatchers and structs
+#include "tinyfsm.hpp"
 #include "DragonbornPresence.h"
+#include "skse/GameMenus.h"
 #include "AdditionalFunctions.h"
 #include <ctime>
-#include "skse/GameMenus.h"
-#include "tinyfsm.hpp"
 
 
 bool is_user_connected = true;
@@ -58,10 +57,10 @@ struct DiscordState : tinyfsm::Fsm<DiscordState> {
   virtual void react(GoToPlaying const &) {
   };
 
-  virtual void entry(void) {
+  virtual void entry() {
   };
 
-  virtual void exit(void) {
+  virtual void exit() {
   };
 };
 #pragma endregion
@@ -237,12 +236,6 @@ namespace dragonborn_presence_namespace {
 #pragma endregion
 
 #pragma region ReceiveEvent
-  EventResult LoadGameEventHandler::ReceiveEvent(
-    TESLoadGameEvent * evn, EventDispatcher<TESLoadGameEvent> * dispatcher) {
-    DiscordState::dispatch(GoToPlaying());
-
-    return kEvent_Continue;
-  }
 
   EventResult DiscordMenuEventHandler::ReceiveEvent(
     MenuOpenCloseEvent * evn,
@@ -266,13 +259,7 @@ namespace dragonborn_presence_namespace {
 #pragma endregion
 
 #pragma region Event Handlers
-  LoadGameEventHandler g_load_game_event_handler;
   DiscordMenuEventHandler g_discordMenuEventHandler;
-#pragma endregion
-
-#pragma region Event dispatchers
-  EventDispatcher<TESLoadGameEvent> * g_load_game_event_dispatcher =
-    reinterpret_cast<EventDispatcher<TESLoadGameEvent>*>(0x012E4FC0);
 #pragma endregion
 
 #pragma region Event registration
@@ -281,7 +268,6 @@ namespace dragonborn_presence_namespace {
 
     DiscordState::start();
 
-    g_load_game_event_dispatcher->AddEventSink(&g_load_game_event_handler);
     auto mm = MenuManager::GetSingleton();
     if (mm) {
       mm->MenuOpenCloseEventDispatcher()->AddEventSink(
@@ -305,12 +291,20 @@ namespace dragonborn_presence_namespace {
     }
   }
 
+  void SetGameLoaded(StaticFunctionTag * base) {
+    DiscordState::dispatch(GoToPlaying());
+	  UpdatePresence(current_position, current_player_info);
+  }
+
 
   bool RegisterFuncs(VMClassRegistry * registry) {
     registry->RegisterFunction(
       new NativeFunction2<StaticFunctionTag, void, BSFixedString, BSFixedString>
       ("UpdatePresenceData", "DragonbornPresence", UpdatePresenceData,
        registry));
+
+    registry->RegisterFunction(new NativeFunction0<StaticFunctionTag, void>(
+      "SetGameLoaded", "DragonbornPresence", SetGameLoaded, registry));
 
     InitDiscord();
 

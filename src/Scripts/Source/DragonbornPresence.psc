@@ -2,6 +2,8 @@ Scriptname DragonbornPresence
 
 Function UpdatePresenceData(String currentPosition, String currentPlayerInfo) Global Native
 
+Function SetGameLoaded() Global Native
+
 String Function GetCurrentPosition(String currentWorldspaceName, String currentLocationName, String currentCellName) Global
   If(currentWorldspaceName)
     If(currentLocationName)
@@ -29,5 +31,5 @@ String Function GetCurrentPosition(String currentWorldspaceName, String currentL
 EndFunction
 
 String Function GetPlayerInfo(Actor playerRef) Global
-  Return playerRef.GetBaseObject().GetName() + " - " + playerRef.GetRace().GetName() + " (Lv. " + playerRef.GetLevel() + ")"
+  Return playerRef.GetBaseObject().GetName() + " - " + playerRef.GetRace().GetName() + " (" + playerRef.GetLevel() + ")"
 EndFunction

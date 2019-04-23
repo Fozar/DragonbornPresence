@@ -105,17 +105,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\skse\GameAPI.cpp" />
-    <ClCompile Include="..\skse\ScaleformAPI.cpp" />
-    <ClCompile Include="..\skse\ScaleformCallbacks.cpp" />
     <ClCompile Include="AdditionalFunctions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="DragonbornPresence.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\skse\GameAPI.h" />
-    <ClInclude Include="..\skse\ScaleformAPI.h" />
-    <ClInclude Include="..\skse\ScaleformCallbacks.h" />
     <ClInclude Include="AdditionalFunctions.h" />
     <ClInclude Include="discord_rpc\include\discord_register.h" />
     <ClInclude Include="discord_rpc\include\discord_rpc.h" />

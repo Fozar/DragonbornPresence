@@ -1,4 +1,0 @@
-;Main Menu
-В главном меню
-;Editing Character
-Редактирует персонажа
